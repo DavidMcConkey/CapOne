@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
-export default class BookOff extends Component {
+export default class Inbox extends Component {
   render() {
     return (
       <div>
-        <h2>Book-Offs</h2>
+        <h2>Inbox</h2>
       </div>
     );
   }

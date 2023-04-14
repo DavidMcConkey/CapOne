@@ -6,6 +6,7 @@ import NavbarComp from "./components/NavBarComp";
 function App() {
   return (
     <div>
+      <NavbarComp></NavbarComp>
       <h2 className="site-title">Placeholder Name</h2>
       <Login></Login>
     </div>

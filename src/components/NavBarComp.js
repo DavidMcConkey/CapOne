@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import BookOffs from "./BookOffs";
 import Schedule from "./Schedule";
 import Dashboard from "./Dashboard";
+import Inbox from "./Inbox";
+import Contacts from "./Contacts";
 import SignUp from "./SignUp";
 
 export default class NavbarComp extends Component {
@@ -40,6 +42,12 @@ export default class NavbarComp extends Component {
                 <Nav.Link as={Link} to="/sign-up">
                   Sign-Up
                 </Nav.Link>
+                <Nav.Link as={Link} to="/inbox">
+                  Inbox
+                </Nav.Link>
+                <Nav.Link as={Link} to="/contacts">
+                  Contacts
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -49,6 +57,8 @@ export default class NavbarComp extends Component {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/bookoffs" element={<BookOffs />} />
+            <Route path="/inbox" element={<Inbox />} />
+            <Route path="/contacts" element={<Contacts />} />
             <Route path="/sign-up" element={<SignUp />} />
           </Routes>
         </div>
