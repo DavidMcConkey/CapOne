@@ -1,20 +1,13 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Login from "./components/Login";
+import NavbarComp from "./components/NavBarComp";
 function App() {
-  // const [data, setData] = useState([{}]);
-
-  // useEffect(() => {
-  //   fetch("/home")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setData(data);
-  //       console.log(data);
-  //     });
-  // }, []);
   return (
     <div>
-      <Button variant="contained">Start now!</Button>
+      <h2 className="site-title">Placeholder Name</h2>
+      <Login></Login>
     </div>
   );
 }
