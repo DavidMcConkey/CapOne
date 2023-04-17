@@ -1,48 +1,40 @@
 import React, { Component, useState } from "react";
 import httpClient from "./httpClient";
-import APIService from "./APIService";
 import Button from "@mui/material/Button";
 import "./styles/SignUp.css";
 const Form = (props) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [restID, setRestID] = useState("");
 
-  const insertArticle = () => {
-    APIService.InsertArticle({ username, password, restID })
-      .then((response) => props.insertedArticle(response))
-      .catch((error) => console.log("error", error));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    insertArticle();
-    setUsername("");
-    setPassword("");
-    setRestID("");
-  };
-
   const logInUser = async () => {
-    console.log(username, password, restID);
+    console.log(email, password, restID);
 
-    const resp = await httpClient.post("//localhost:5000/login", {
-      username,
-      password,
-      restID,
-    });
-    console.log(resp.data);
+    try {
+      const resp = await httpClient.post("//localhost:5000/login", {
+        email,
+        password,
+        restID,
+      });
+
+      window.location.href = "/";
+    } catch (e) {
+      if (e.response.status === 401) {
+        alert("Invalid credentials!");
+      }
+    }
   };
 
   return (
     <div className="login-form">
-      <form onSubmit={handleSubmit}>
+      <form>
         <label htmlFor="" className="form-label"></label>
         <input
-          type="text"
+          type="email"
           className="form-control"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
 

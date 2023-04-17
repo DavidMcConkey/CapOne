@@ -2,6 +2,7 @@ import os
 from flask import Flask,render_template, request,session, redirect, jsonify,abort
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_session import Session
+from flask_bcrypt import Bcrypt
 from flask_cors import CORS, cross_origin
 from models import db,connect_db,User
 from config import ApplicationConfig
@@ -12,14 +13,14 @@ CURR_USER_KEY = 'curr_user'
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
-bcrypt = bcrypt(app)
+bcrypt = Bcrypt(app)
 server_session = Session(app)
+
 CORS(app, supports_credentials=True)
 
-
-with app.app_context():
-    db.create_all()
+app.app_context().push()
 connect_db(app)
+
 
 @app.route('/@me')
 def get_current_user():
