@@ -2,6 +2,7 @@ import os
 from flask import Flask,render_template, request,session, redirect, jsonify,abort
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_session import Session
+from flask_cors import CORS, cross_origin
 from models import db,connect_db,User
 from config import ApplicationConfig
 from flask_bcrypt import bcrypt
@@ -13,6 +14,9 @@ app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 bcrypt = bcrypt(app)
 server_session = Session(app)
+CORS(app, supports_credentials=True)
+
+
 with app.app_context():
     db.create_all()
 connect_db(app)
@@ -29,7 +33,6 @@ def get_current_user():
         'id':user.id,
         "email":user.email
     })
-
 
 @app.route('/sign-up',methods=["POST"])
 def register_user():
@@ -49,8 +52,7 @@ def register_user():
         'id':new_user.id,
         "email":new_user.email
     })
-
-app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login_user():
     email = request.json['email']
     password = request.json['password']

@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import httpClient from "./httpClient";
 import APIService from "./APIService";
 import Button from "@mui/material/Button";
 import "./styles/SignUp.css";
@@ -19,6 +20,17 @@ const Form = (props) => {
     setUsername("");
     setPassword("");
     setRestID("");
+  };
+
+  const logInUser = async () => {
+    console.log(username, password, restID);
+
+    const resp = await httpClient.post("//localhost:5000/login", {
+      username,
+      password,
+      restID,
+    });
+    console.log(resp.data);
   };
 
   return (
@@ -51,7 +63,11 @@ const Form = (props) => {
           onChange={(e) => setRestID(e.target.value)}
           required
         />
-        <Button variant="contained" className="btn btn-primary mt-2">
+        <Button
+          onClick={(e) => logInUser()}
+          variant="contained"
+          className="btn btn-primary mt-2"
+        >
           Sign In
         </Button>
       </form>
