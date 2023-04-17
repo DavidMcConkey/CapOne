@@ -17,7 +17,7 @@ class ShiftRole(db.Model):
     """
 
     __tablename__ = "shift_roles"
-    id = db.Column(db.Integer, primary_key = True, autoincement = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
     role = db.orm.relationship("Role")
     shift_id = db.Column(db.Integer, db.ForeignKey('shift.id'))
@@ -285,3 +285,4 @@ def connect_db(app):
     """Connects this databse to provided flask app."""
     db.app = app
     db.init_app(app)
+    db.create_all()

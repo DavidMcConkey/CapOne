@@ -15,6 +15,7 @@ import Dashboard from "./Dashboard";
 import Inbox from "./Inbox";
 import Contacts from "./Contacts";
 import SignUp from "./SignUp";
+import NotFound from "./404";
 
 export default class NavbarComp extends Component {
   render() {
@@ -60,6 +61,7 @@ export default class NavbarComp extends Component {
             <Route path="/inbox" element={<Inbox />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>
