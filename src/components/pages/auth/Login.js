@@ -1,8 +1,8 @@
 import React, { Component, useState } from "react";
-import httpClient from "./httpClient";
+import httpClient from "../../httpClient.js";
 import Button from "@mui/material/Button";
-import "./styles/SignUp.css";
-const Form = (props) => {
+import "../../styles/SignUp.css";
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [restID, setRestID] = useState("");
@@ -11,7 +11,7 @@ const Form = (props) => {
     console.log(email, password, restID);
 
     try {
-      const resp = await httpClient.post("//localhost:5000/login", {
+      const resp = await httpClient.post("/login", {
         email,
         password,
         restID,
@@ -67,4 +67,4 @@ const Form = (props) => {
   );
 };
 
-export default Form;
+export default Login;
